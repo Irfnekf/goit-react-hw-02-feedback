@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import BUTTONSNAME from '../data/constants';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Section from './Section/Section';
 import Statistics from './Statistics/Statistics';
@@ -13,8 +12,7 @@ export class App extends Component {
   };
   handleClick = ({ target }) => {
     const { feedback } = target.dataset;
-    const lowerCase = feedback.toLowerCase();
-    this.setState(prevState => ({ [lowerCase]: prevState[lowerCase] + 1 }));
+    this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
 
   totalClick = () => {
@@ -37,7 +35,7 @@ export class App extends Component {
       <div>
         <Section title="Please leave fedback">
           <FeedbackOptions
-            options={BUTTONSNAME}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.handleClick}
           />
         </Section>
